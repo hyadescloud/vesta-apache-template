@@ -1,0 +1,5 @@
+# Vesta Apache templates
+
+This repository has been created to let Vesta Nginx + Apache users to also use Php-fpm
+
+!!!  Make sure you have php-fpm installed before using any php-fpm templates !!!
