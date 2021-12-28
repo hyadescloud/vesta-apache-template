@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This will loop for each php versions
 # The function php_fpm_pool_cleaner

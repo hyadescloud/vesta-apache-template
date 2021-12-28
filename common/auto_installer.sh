@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This will auto install wordpress
 autoinstall_latest_wordpress() {

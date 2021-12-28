@@ -1,7 +1,11 @@
 #!/bin/bash
 
-source ./common/auto_installer.sh
-source ./common/php_pools.sh
+
+full_path=$(realpath $0)
+dir_path=$(dirname $full_path)
+
+source dir_path/common/auto_installer.sh
+source dir_path/common/php_pools.sh
 
 # Current php-fpm version
 php_vers=7.0
