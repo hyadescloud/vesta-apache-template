@@ -1,8 +1,8 @@
 #!/bin/bash
 # This is for wordpress CMS
 
-source common/auto_installer.sh
-source common/php_pools.sh
+source ./common/auto_installer.sh
+source ./common/php_pools.sh
 
 # Current php-fpm version
 php_vers=8.0
