@@ -8,3 +8,4 @@ git pull
 # Set the correct permission
 chmod a+x *.sh
 chmod a+x common/*.sh
+
