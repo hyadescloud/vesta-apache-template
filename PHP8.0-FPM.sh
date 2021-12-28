@@ -1,5 +1,14 @@
 #!/bin/bash
+
+source common/auto_installer.sh
+source common/php_pools.sh
+
+# Current php-fpm version
+php_vers=8.0
+
 # Adding php pool conf
+# This works well for Wordpress and prestashop like CMS
+# Doesn't work for Symfony Project that requires a modification in the public directory
 user="$1"
 domain="$2"
 ip="$3"
@@ -8,7 +17,7 @@ docroot="$5"
 
 pool_conf="[$2]
 
-listen = /run/php/php8.0-fpm-$2.sock
+listen = /run/php/php$php_vers-fpm-$2.sock
 listen.owner = $1
 listen.group = $1
 listen.mode = 0666
@@ -40,61 +49,10 @@ env[TMPDIR] = /home/$1/tmp
 env[TEMP] = /home/$1/tmp
 "
 
-pool_file_56="/etc/php/5.6/fpm/pool.d/$2.conf"
-pool_file_70="/etc/php/7.0/fpm/pool.d/$2.conf"
-pool_file_71="/etc/php/7.1/fpm/pool.d/$2.conf"
-pool_file_72="/etc/php/7.2/fpm/pool.d/$2.conf"
-pool_file_73="/etc/php/7.3/fpm/pool.d/$2.conf"
-pool_file_74="/etc/php/7.4/fpm/pool.d/$2.conf"
-pool_file_80="/etc/php/8.0/fpm/pool.d/$2.conf"
+# Refresh all php pools for this domain
+refresh_all $domain
 
-if [ -f "$pool_file_56" ]; then
-    rm $pool_file_56
-    service php5.6-fpm restart
-fi
-
-if [ -f "$pool_file_70" ]; then
-    rm $pool_file_70
-    service php7.0-fpm restart
-fi
-
-if [ -f "$pool_file_71" ]; then
-    rm $pool_file_71
-    service php7.1-fpm restart
-fi
-
-if [ -f "$pool_file_72" ]; then
-    rm $pool_file_72
-    service php7.2-fpm restart
-fi
-
-if [ -f "$pool_file_73" ]; then
-    rm $pool_file_73
-    service php7.3-fpm restart
-fi
-
-if [ -f "$pool_file_74" ]; then
-    rm $pool_file_74
-    service php7.4-fpm restart
-fi
-
-
-write_file=0
-if [ ! -f "$pool_file_80" ]; then
-  write_file=1
-else
-  user_count=$(grep -c "/home/$1/" $pool_file_80)
-  if [ $user_count -eq 0 ]; then
-    write_file=1
-  fi
-fi
-
-if [ $write_file -eq 1 ]; then
-    echo "$pool_conf" > $pool_file_80
-    service php8.0-fpm restart
-fi
-if [ -f "/etc/php/8.0/fpm/pool.d/www.conf" ]; then
-    rm /etc/php/8.0/fpm/pool.d/www.conf
-fi
+# Generate php pool config file
+generate_php_pool $user $php_vers $domain $pool_conf
 
 exit 0

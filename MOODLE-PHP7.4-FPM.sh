@@ -13,8 +13,6 @@ ip="$3"
 home_dir="$4"
 docroot="$5"
 
-# Current php-fpm version
-php_vers=7.4
 
 pool_conf="[$2]
 
@@ -35,14 +33,16 @@ pm.status_path = /status
 
 php_admin_value[upload_tmp_dir] = /home/$1/tmp
 php_admin_value[session.save_path] = /home/$1/sessions
-php_admin_value[open_basedir] = $5:/home/$1/tmp:/bin:/usr/bin:/usr/local/bin:/var/www/html:/tmp:/usr/share:/etc/phpmyadmin:/var/lib/phpmyadmin:/etc/roundcube:/var/log/roundcube:/var/lib/roundcube
+php_admin_value[open_basedir] = none
 php_admin_value[upload_max_filesize] = 64M
 php_admin_value[max_execution_time] = 30
 php_admin_value[post_max_size] = 128M
-php_admin_value[memory_limit] = 256M
+php_admin_value[memory_limit] = 128M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
 php_admin_flag[mysql.allow_persistent] = off
 php_admin_flag[safe_mode] = off
+php_admin_flag[register_globals] = off
+php_admin_value[max_input_vars] = 5000
 
 env[PATH] = /usr/local/bin:/usr/bin:/bin
 env[TMP] = /home/$1/tmp
@@ -50,14 +50,19 @@ env[TMPDIR] = /home/$1/tmp
 env[TEMP] = /home/$1/tmp
 "
 
+# Create a session path
+if [ ! -d "/home/$1/sessions" ]; then
+	mkdir -p /home/$1/sessions
+	chown -R $1:$1 /home/$1/sessions
+fi
 
 # This will auto install moodle
-autoinstall_latest_wordpress $user $domain
+autoinstall_latest_moodle $user $domain
 
 # Refresh all php pools for this domain
 refresh_all $domain
 
-# Generate php pool config file
+# Generate php pool confi file
 generate_php_pool $user $php_vers $domain $pool_conf
 
 exit 0

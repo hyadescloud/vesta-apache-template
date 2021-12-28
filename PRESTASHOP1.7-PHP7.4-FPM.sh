@@ -1,4 +1,11 @@
 #!/bin/bash
+
+source common/auto_installer.sh
+source common/php_pools.sh
+
+# Current php-fpm version
+php_vers=7.4
+
 # Adding php pool conf
 user="$1"
 domain="$2"
@@ -40,76 +47,13 @@ env[TMPDIR] = /home/$1/tmp
 env[TEMP] = /home/$1/tmp
 "
 
+autoinstall_latest_prestashop $user $domain
 
+# Refresh all php pools for this domain
+refresh_all $domain
 
-
-# Nextcloud directory
-if [ ! -f "/home/$1/web/$2/public_html/index.php" ]; then
-	
-	rm -rf /home/$1/web/$2/public_html/*
-	# Download prestashop
-	wget https://download.prestashop.com/download/releases/prestashop_1.7.8.1.zip -O /home/$1/tmp/prestashop.zip
-	unzip -d /home/$1/web/$2/public_html/ /home/$1/tmp/prestashop.zip
-	rm -rf /home/$1/tmp/prestashop.zip
-        chown -R $1:$1 /home/$1/web/$2/public_html
-fi
-
-
-
-pool_file_56="/etc/php/5.6/fpm/pool.d/$2.conf"
-pool_file_70="/etc/php/7.0/fpm/pool.d/$2.conf"
-pool_file_71="/etc/php/7.1/fpm/pool.d/$2.conf"
-pool_file_72="/etc/php/7.2/fpm/pool.d/$2.conf"
-pool_file_73="/etc/php/7.3/fpm/pool.d/$2.conf"
-pool_file_74="/etc/php/7.4/fpm/pool.d/$2.conf"
-pool_file_80="/etc/php/8.0/fpm/pool.d/$2.conf"
-
-if [ -f "$pool_file_56" ]; then
-    rm $pool_file_56
-    service php5.6-fpm restart
-fi
-
-if [ -f "$pool_file_70" ]; then
-    rm $pool_file_70
-    service php7.0-fpm restart
-fi
-
-if [ -f "$pool_file_71" ]; then
-    rm $pool_file_71
-    service php7.1-fpm restart
-fi
-
-if [ -f "$pool_file_72" ]; then
-    rm $pool_file_72
-    service php7.2-fpm restart
-fi
-
-if [ -f "$pool_file_73" ]; then
-    rm $pool_file_73
-    service php7.3-fpm restart
-fi
-
-write_file=0
-if [ ! -f "$pool_file_74" ]; then
-  write_file=1
-else
-  user_count=$(grep -c "/home/$1/" $pool_file_74)
-  if [ $user_count -eq 0 ]; then
-    write_file=1
-  fi
-fi
-if [ $write_file -eq 1 ]; then
-    echo "$pool_conf" > $pool_file_74
-    service php7.4-fpm restart
-fi
-if [ -f "/etc/php/7.4/fpm/pool.d/www.conf" ]; then
-    rm /etc/php/7.4/fpm/pool.d/www.conf
-fi
-
-if [ -f "$pool_file_80" ]; then
-    rm $pool_file_80
-    service php8.0-fpm restart
-fi
+# Generate php pool config file
+generate_php_pool $user $php_vers $domain $pool_conf
 
 
 
