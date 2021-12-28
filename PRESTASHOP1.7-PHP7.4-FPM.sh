@@ -33,11 +33,19 @@ pm.status_path = /status
 php_admin_value[upload_tmp_dir] = /home/$1/tmp
 php_admin_value[session.save_path] = /home/$1/sessions
 php_admin_value[open_basedir] = $5:/home/$1/web/$2/nextcloud:/home/$1/web/$2/nextcloud_data:/home/$1/tmp:/bin:/usr/bin:/usr/local/bin:/var/www/html:/tmp:/usr/share:/etc/phpmyadmin:/var/lib/phpmyadmin:/etc/roundcube:/var/log/roundcube:/var/lib/roundcube
-php_admin_value[upload_max_filesize] = 64M
-php_admin_value[max_execution_time] = 30
-php_admin_value[post_max_size] = 128M
-php_admin_value[memory_limit] = 256M
+php_admin_value[upload_max_filesize] = 20M
+php_admin_value[max_execution_time] = 300
+php_admin_value[post_max_size] = 22M
+php_admin_value[memory_limit] = 512M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
+php_admin_value[max_input_time] = 300
+php_admin_value[max_input_vars] = 20000
+
+php_admin_value[allow_url_fopen] = on
+php_admin_value[short_open_tag] = off
+php_admin_value[display_errors] = off
+
+
 php_admin_flag[mysql.allow_persistent] = off
 php_admin_flag[safe_mode] = off
 
