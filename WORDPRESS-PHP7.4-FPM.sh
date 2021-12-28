@@ -13,8 +13,6 @@ ip="$3"
 home_dir="$4"
 docroot="$5"
 
-# Current php-fpm version
-php_vers=7.4
 
 pool_conf="[$2]
 
