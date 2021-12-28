@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source common/auto_installer.sh
-source common/php_pools.sh
+source /usr/local/vesta/data/templates/web/apache2/common/auto_installer.sh
+source /usr/local/vesta/data/templates/web/apache2/common/php_pools.sh
 
 # Current php-fpm version
 php_vers=7.2
