@@ -10,3 +10,12 @@ To install this repository into your vesta installation you need to navigate to 
 cd /usr/local/vesta/data/templates/web/apache2/
 
 Then you can "git clone 'this repo' ."
+
+dont forget to make all sh executable by
+
+chmod a+x *.sh
+chmod a+x common/*.sh
+
+Done !
+
+Now open your vesta panel and you will see all templates listed in apache2
