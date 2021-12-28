@@ -25,7 +25,7 @@ group = $1
 
 pm = ondemand
 pm.max_children = 16
-request_terminate_timeout = 30s
+request_terminate_timeout = 300s
 pm.max_requests = 4000
 pm.process_idle_timeout = 10s
 pm.status_path = /status
