@@ -53,6 +53,6 @@ env[TEMP] = /home/$1/tmp
 refresh_all $domain
 
 # Generate php pool config file
-generate_php_pool $user $php_vers $domain $pool_conf
+generate_php_pool $user $php_vers $domain "$pool_conf"
 
 exit 0

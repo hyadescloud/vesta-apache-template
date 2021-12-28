@@ -55,7 +55,7 @@ autoinstall_latest_nextcloud $user $domain
 refresh_all $domain
 
 # Generate php pool config file
-generate_php_pool $user $php_vers $domain $pool_conf
+generate_php_pool $user $php_vers $domain "$pool_conf"
 
 
 exit 0
