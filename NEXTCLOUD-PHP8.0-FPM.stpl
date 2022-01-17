@@ -25,6 +25,9 @@
     SSLCertificateFile %ssl_crt%
     SSLCertificateKeyFile %ssl_key%
     %ssl_ca_str%SSLCertificateChainFile %ssl_ca%
+    <IfModule mod_headers.c>
+      Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    </IfModule>
     <IfModule mod_dav.c>
         Dav off
     </IfModule>

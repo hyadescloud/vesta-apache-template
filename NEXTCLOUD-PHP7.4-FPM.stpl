@@ -20,6 +20,9 @@
         SSLRequireSSL
         Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
 	</Directory>
+    <IfModule mod_headers.c>
+      Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    </IfModule>
     SSLEngine on
     SSLVerifyClient none
     SSLCertificateFile %ssl_crt%
