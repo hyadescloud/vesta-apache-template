@@ -15,15 +15,19 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
+        Require all granted
         AllowOverride All
         SSLRequireSSL
-        Options +Includes -Indexes +ExecCGI
+        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
 	</Directory>
     SSLEngine on
     SSLVerifyClient none
     SSLCertificateFile %ssl_crt%
     SSLCertificateKeyFile %ssl_key%
     %ssl_ca_str%SSLCertificateChainFile %ssl_ca%
+    <IfModule mod_dav.c>
+        Dav off
+    </IfModule>
 #    <IfModule mod_ruid2.c>
 #        RMode config
 #        RUidGid %user% %group%
@@ -41,4 +45,3 @@
     IncludeOptional %home%/%user%/conf/web/s%web_system%.%domain%.conf*
 
 </VirtualHost>
-

@@ -15,9 +15,14 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
+        Require all granted
         AllowOverride All
-        Options +Includes -Indexes +ExecCGI
+        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
+        Require all granted
     </Directory>
+    <IfModule mod_dav.c>
+        Dav off
+    </IfModule>
 #    <IfModule mod_ruid2.c>
 #        RMode config
 #        RUidGid %user% %group%
