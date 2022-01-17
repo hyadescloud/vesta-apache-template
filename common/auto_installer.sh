@@ -45,7 +45,7 @@ autoinstall_latest_nextcloud() {
     # Nextcloud directory
     if [ ! -f "/home/$user/web/$domain/public_html/index.php" ]; then
         # Download Nextcloud
-        wget https://download.nextcloud.com/server/releases/nextcloud-22.2.3.zip -O /home/$user/tmp/nextcloud.zip
+        wget https://download.nextcloud.com/server/releases/latest.zip -O /home/$user/tmp/nextcloud.zip
         unzip -d /home/$user/web/$domain/ /home/$user/tmp/nextcloud.zip
         rm -rf /home/$user/tmp/nextcloud.zip
         # Clean public_html directory
