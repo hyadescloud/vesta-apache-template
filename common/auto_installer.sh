@@ -92,3 +92,26 @@ autoinstall_latest_moodle() {
         chown -R $user:$user /home/$user/web/$domain/moodledata
     fi
 }
+
+
+
+# This will auto install latest Joomla
+autoinstall_latest_joomla() {
+    user=$1
+    domain=$2
+
+    # Joomla directory
+    # This will auto install Joomla if the public_html directory is empty
+    # So it must be cleaned before
+    if [ ! -f "/home/$user/web/$domain/public_html/index.php" ]; then
+        # Clear public_html directory
+        rm -rf /home/$user/web/$domain/public_html/*
+        wget https://downloads.joomla.org/cms/joomla4/4-0-6/Joomla_4-0-6-Stable-Full_Package.zip?format=zip -O /home/$user/tmp/joomla.zip
+        unzip -d /home/$user/web/$domain/private/ /home/$user/tmp/joomla.zip
+        rm -rf /home/$user/tmp/joomla.zip
+        mv /home/$user/web/$domain/private/joomla/* /home/$user/web/$domain/public_html/
+        chown -R $user:$user /home/$user/web/$domain/public_html
+        rm -rf /home/$user/web/$domain/private/joomla
+    fi
+}
+
