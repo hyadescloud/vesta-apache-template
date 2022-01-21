@@ -4,7 +4,7 @@ source /usr/local/vesta/data/templates/web/apache2/common/auto_installer.sh
 source /usr/local/vesta/data/templates/web/apache2/common/php_pools.sh
 
 # Current php-fpm version
-php_vers=7.4
+php_vers=8.0
 
 # Adding php pool conf
 user="$1"
