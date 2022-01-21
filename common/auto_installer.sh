@@ -113,3 +113,19 @@ autoinstall_latest_joomla() {
     fi
 }
 
+
+
+autoinstall_latest_drupal() {
+    user=$1
+    domain=$2
+
+    # Drupal directory
+    # This will auto install Joomla if the public_html directory is empty
+    # So it must be cleaned before
+    if [ ! -f "/home/$user/web/$domain/public_html/index.php" ]; then
+        # Clear public_html directory
+        rm -rf /home/$user/web/$domain/public_html/*
+        git clone https://git.drupalcode.org/project/drupal.git /home/$user/web/$domain/public_html/
+        chown -R $user:$user /home/$user/web/$domain/public_html
+    fi
+}
