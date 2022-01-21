@@ -53,7 +53,7 @@ env[TEMP] = /home/$1/tmp
 
 
 # This will auto install moodle
-autoinstall_latest_drupal $user $domain php_vers
+autoinstall_latest_drupal $user $domain $php_vers
 
 # Refresh all php pools for this domain
 refresh_all $domain
