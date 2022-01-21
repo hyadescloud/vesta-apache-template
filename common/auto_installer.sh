@@ -127,5 +127,6 @@ autoinstall_latest_drupal() {
         rm -rf /home/$user/web/$domain/public_html/*
         git clone https://git.drupalcode.org/project/drupal.git /home/$user/web/$domain/public_html/
         chown -R $user:$user /home/$user/web/$domain/public_html
+        cd /home/$user/web/$domain/public_html/ && /usr/bin/php7.4 /usr/local/bin/composer install
     fi
 }
