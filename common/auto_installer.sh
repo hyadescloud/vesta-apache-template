@@ -131,3 +131,21 @@ autoinstall_latest_drupal() {
         chown -R $user:$user /home/$user/web/$domain/public_html
     fi
 }
+
+# This will auto install latest akaunting
+autoinstall_latest_akaunting() {
+    user=$1
+    domain=$2
+
+    # akaunting directory
+    # This will auto install akaunting if the public_html directory is empty
+    # So it must be cleaned before
+    if [ ! -f "/home/$user/web/$domain/public_html/index.php" ]; then
+        # Clear public_html directory
+        rm -rf /home/$user/web/$domain/public_html/*
+        wget https://akaunting.com/download.php?version=latest -O /home/$user/tmp/akaunting.zip
+        unzip -d /home/$user/web/$domain/public_html/ /home/$user/tmp/akaunting.zip
+        rm -rf /home/$user/tmp/akaunting.zip
+        chown -R $user:$user /home/$user/web/$domain/public_html
+    fi
+}
