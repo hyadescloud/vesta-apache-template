@@ -32,7 +32,7 @@ php_fpm_pool_cleaner() {
     php_version=$1
     conf_filename=$2 # Is the domain name for vestacp
     
-    php_service= php$php_version-fpm
+    php_service="php$php_version-fpm"
     pool_file="/etc/php/$php_version/fpm/pool.d/$conf_filename.conf"
     
     if [ -f "$pool_file" ]; then
