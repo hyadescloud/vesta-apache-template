@@ -45,7 +45,7 @@ php_admin_flag[safe_mode] = off
 
 php_admin_value[opcache.enable] = 1
 php_admin_value[opcache.save_comments] = 1
-php_admin_value[opcache.interned_strings_buffer] = 16
+php_admin_value[opcache.interned_strings_buffer] = 64
 php_admin_value[opcache.memory_consumption] = 128
 php_admin_value[opcache.max_accelerated_files] = 10000
 php_admin_value[opcache.validate_timestamps] = 0
