@@ -30,6 +30,9 @@ pm.max_requests = 4000
 pm.process_idle_timeout = 10s
 pm.status_path = /status
 
+opcache.interned_strings_buffer = 16
+opcache.memory_consumption = 128
+
 php_admin_value[upload_tmp_dir] = /home/$1/tmp
 php_admin_value[session.save_path] = /home/$1/sessions
 php_admin_value[open_basedir] = $5:/home/$1/web/$2/nextcloud:/home/$1/web/$2/nextcloud_data:/home/$1/tmp:/bin:/usr/bin:/usr/local/bin:/var/www/html:/tmp:/usr/share:/etc/phpmyadmin:/var/lib/phpmyadmin:/etc/roundcube:/var/log/roundcube:/var/lib/roundcube
