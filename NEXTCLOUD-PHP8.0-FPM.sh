@@ -33,6 +33,9 @@ pm.status_path = /status
 opcache.enable=1
 opcache.interned_strings_buffer = 16
 opcache.memory_consumption = 128
+opcache.max_accelerated_files=10000
+opcache.validate_timestamps=1
+opcache.revalidate_freq=30
 
 php_admin_value[upload_tmp_dir] = /home/$1/tmp
 php_admin_value[session.save_path] = /home/$1/sessions
