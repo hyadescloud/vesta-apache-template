@@ -30,6 +30,7 @@ pm.max_requests = 4000
 pm.process_idle_timeout = 10s
 pm.status_path = /status
 
+opcache.enable=1
 opcache.interned_strings_buffer = 16
 opcache.memory_consumption = 128
 
