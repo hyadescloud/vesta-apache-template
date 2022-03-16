@@ -43,7 +43,7 @@ php_admin_value[output_buffering] = off
 php_admin_flag[mysql.allow_persistent] = off
 php_admin_flag[safe_mode] = off
 
-php_admin_flag[opcache.enable] = on
+php_admin_flag[opcache.enable] = 1
 php_admin_flag[opcache.interned_strings_buffer] = 16
 php_admin_flag[opcache.memory_consumption] = 128
 php_admin_flag[opcache.max_accelerated_files] = 10000
