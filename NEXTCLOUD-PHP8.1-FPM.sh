@@ -40,8 +40,7 @@ php_admin_value[post_max_size] = 5000M
 php_admin_value[memory_limit] = 512M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
 php_admin_value[output_buffering] = off
-php_admin_flag[mysql.allow_persistent] = off
-php_admin_flag[safe_mode] = off
+
 
 php_admin_value[opcache.enable] = 1
 php_admin_value[opcache.save_comments] = 1

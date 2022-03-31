@@ -38,7 +38,7 @@ php_admin_value[max_execution_time] = 300
 php_admin_value[post_max_size] = 5000M
 php_admin_value[memory_limit] = 512M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
-
+php_admin_value[output_buffering] = off
 
 php_admin_value[error_log] = syslog
 php_admin_flag[log_errors] = on
