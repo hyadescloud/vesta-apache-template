@@ -56,6 +56,9 @@ env[TMPDIR] = /home/$1/tmp
 env[TEMP] = /home/$1/tmp
 "
 
+# Fixing permissions
+chown -R $1:$1 /home/$1/tmp
+chown -R $1:$1 /home/$1/sessions
 
 # This will auto install Nextcloud
 autoinstall_latest_nextcloud $user $domain
