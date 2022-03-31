@@ -40,8 +40,13 @@ php_admin_value[memory_limit] = 512M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
 
 
-php_admin_value[error_log] = syslog
-php_admin_flag[log_errors] = on
+php_admin_value[opcache.enable] = 1
+php_admin_value[opcache.save_comments] = 1
+php_admin_value[opcache.interned_strings_buffer] = 64
+php_admin_value[opcache.memory_consumption] = 128
+php_admin_value[opcache.max_accelerated_files] = 10000
+php_admin_value[opcache.validate_timestamps] = 1
+php_admin_value[opcache.revalidate_freq] = 60
 
 env[PATH] = /usr/local/bin:/usr/bin:/bin
 env[TMP] = /home/$1/tmp

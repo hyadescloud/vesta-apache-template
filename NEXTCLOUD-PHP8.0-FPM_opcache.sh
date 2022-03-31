@@ -4,7 +4,7 @@ source /usr/local/vesta/data/templates/web/apache2/common/auto_installer.sh
 source /usr/local/vesta/data/templates/web/apache2/common/php_pools.sh
 
 # Current php-fpm version
-php_vers=7.4
+php_vers=8.0
 
 # Adding php pool conf
 user="$1"
@@ -30,6 +30,7 @@ pm.max_requests = 4000
 pm.process_idle_timeout = 10s
 pm.status_path = /status
 
+
 php_admin_value[upload_tmp_dir] = /home/$1/tmp
 php_admin_value[session.save_path] = /home/$1/sessions
 php_admin_value[open_basedir] = $5:/home/$1/web/$2/nextcloud:/home/$1/web/$2/nextcloud_data:/home/$1/tmp:/bin:/usr/bin:/usr/local/bin:/var/www/html:/tmp:/usr/share:/etc/phpmyadmin:/var/lib/phpmyadmin:/etc/roundcube:/var/log/roundcube:/var/lib/roundcube
@@ -40,8 +41,14 @@ php_admin_value[memory_limit] = 512M
 php_admin_value[sendmail_path] = \"/usr/sbin/sendmail -t -i -f info@$2\"
 
 
-php_admin_value[error_log] = syslog
-php_admin_flag[log_errors] = on
+php_admin_value[opcache.enable] = 1
+php_admin_value[opcache.save_comments] = 1
+php_admin_value[opcache.interned_strings_buffer] = 64
+php_admin_value[opcache.memory_consumption] = 128
+php_admin_value[opcache.max_accelerated_files] = 10000
+php_admin_value[opcache.validate_timestamps] = 1
+php_admin_value[opcache.revalidate_freq] = 60
+
 
 env[PATH] = /usr/local/bin:/usr/bin:/bin
 env[TMP] = /home/$1/tmp
