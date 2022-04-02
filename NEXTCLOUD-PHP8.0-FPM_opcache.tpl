@@ -15,10 +15,8 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
-        Require all granted
+        Options +FollowSymlinks
         AllowOverride All
-        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
-        Require all granted
     </Directory>
     <IfModule mod_dav.c>
         Dav off

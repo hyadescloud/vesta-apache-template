@@ -15,10 +15,9 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
-        Require all granted
+        Options +FollowSymlinks
         AllowOverride All
         SSLRequireSSL
-        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
 	</Directory>
     SSLEngine on
     SSLVerifyClient none
