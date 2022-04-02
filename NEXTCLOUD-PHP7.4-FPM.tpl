@@ -15,9 +15,8 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
-        Require all granted
+        Options +FollowSymlinks
         AllowOverride All
-        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
     </Directory>
     <IfModule mod_dav.c>
         Dav off
@@ -35,6 +34,9 @@
         SetHandler "proxy:unix:/run/php/php7.4-fpm-%domain%.sock|fcgi://localhost/"
     </FilesMatch>
     SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+
+    SetEnv HOME %sdocroot%
+    SetEnv HTTP_HOME %sdocroot%
 
     IncludeOptional %home%/%user%/conf/web/%web_system%.%domain%.conf*
 

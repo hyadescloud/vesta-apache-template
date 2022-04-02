@@ -15,10 +15,9 @@
         AllowOverride All
     </Directory>
     <Directory %sdocroot%>
-        Require all granted
+        Options +FollowSymlinks
         AllowOverride All
         SSLRequireSSL
-        Options +Includes -Indexes +ExecCGI +FollowSymLinks +MultiViews
 	</Directory>
     <IfModule mod_headers.c>
       Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
