@@ -16,6 +16,11 @@ autoinstall_latest_wordpress() {
         mv /home/$user/web/$domain/private/wordpress/* /home/$user/web/$domain/public_html/
         chown -R $user:$user /home/$user/web/$domain/public_html
         rm -rf /home/$user/web/$domain/private/wordpress
+
+        # change all files to 664
+        find /home/$user/web/$domain/public_html/ -type f -exec chmod 664 {} + 
+        # change all folders to 775 
+        find /home/$user/web/$domain/public_html/ -type d -exec chmod 775 {} + 
     fi
 }
 
